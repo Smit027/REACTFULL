@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import {useEffect, useRef, useState } from "react"
 
 
 function App() {
@@ -37,9 +37,6 @@ function App() {
             value={password}
             ref={passwordRef}
           />
-          <button 
-          className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
-          >copy</button>
       </div>
 
       <div className='flex text-sm gap-x-2'>
