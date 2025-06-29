@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState } from "react"
+import {useCallback, useEffect,useState } from "react"
 
 
 function App() {
@@ -7,7 +7,8 @@ function App() {
   const[char,Setchar]= useState(true)
   const[password,setpassword]= useState()
 
-  useEffect( ()=> {
+
+  const passwordgenrator = useCallback(()=>{
     let str='QWERTYUIOPLKJHGFDSAZXCVBNMmznxbcvalskdjfhgpqowieuryt'
     let pass= ''
     if(number){
@@ -22,9 +23,29 @@ function App() {
     setpassword(pass)
   } ,[length,number,char,setpassword])
 
-  // useref hook
 
-  const passwordRef =useRef(null)
+  useEffect(()=>{
+   passwordgenrator()
+  },[length,number,char,setpassword])
+
+
+
+  // 2 ) without use usecall back only useeffect hook and without mamoazation .
+
+  // useEffect( ()=> {
+  //   let str='QWERTYUIOPLKJHGFDSAZXCVBNMmznxbcvalskdjfhgpqowieuryt'
+  //   let pass= ''
+  //   if(number){
+  //     str += '0123456789'
+  //   }
+  //   if(char) str +='!@#$%^&*()_-+{}<>?:;[]'
+
+  //   for(let i=1; i<=length; i++){
+  //     let oi =Math.random()* str.length
+  //      pass += str.at(oi)
+  //   }
+  //   setpassword(pass)
+  // } ,[length,number,char,setpassword])
 
   return (
     <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
@@ -35,7 +56,6 @@ function App() {
             className="outline-none w-full py-1 px-3 bg-white"
             disabled
             value={password}
-            ref={passwordRef}
           />
       </div>
 
